@@ -507,6 +507,75 @@ class DomainProfileTests(unittest.TestCase):
             (self.dest / "rules/github-actions-files.mdc").exists()
         )
 
+    def test_core_omits_rag_and_mcp_skills(self):
+        main(["--dest", str(self.dest), "--repo", str(self.repo)])
+        self.assertFalse((self.dest / "skills/llamaindex-ingest/SKILL.md").exists())
+        self.assertFalse((self.dest / "skills/pydantic-ai-rag/SKILL.md").exists())
+        self.assertFalse((self.dest / "skills/fastmcp/SKILL.md").exists())
+
+    def test_rag_profile_installs_ingest_rag_and_db(self):
+        code = main(
+            ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "rag"]
+        )
+        self.assertEqual(code, 0)
+        self.assertTrue((self.dest / "skills/llamaindex-ingest/SKILL.md").is_file())
+        self.assertTrue((self.dest / "skills/pydantic-ai-rag/SKILL.md").is_file())
+        self.assertTrue(
+            (self.dest / "skills/python-db-conventions/SKILL.md").is_file()
+        )
+        self.assertTrue((self.dest / "skills/domain-reviewer/SKILL.md").is_file())
+        self.assertFalse((self.dest / "skills/fastmcp/SKILL.md").exists())
+        self.assertFalse(
+            (self.dest / "skills/vercel-react-best-practices/SKILL.md").exists()
+        )
+        installed = load_yaml_file(self.dest / "my-cursor-setup-catalog.yaml")
+        self.assertIn("tdd", installed["personas"]["rag"]["skills"])
+        self.assertIn(
+            "verification-before-completion",
+            installed["personas"]["rag"]["skills"],
+        )
+        self.assertIn("llamaindex-ingest", installed["personas"]["rag"]["skills"])
+        self.assertIn("pydantic-ai-rag", installed["personas"]["rag"]["skills"])
+        self.assertIn(
+            "python-db-conventions", installed["personas"]["rag"]["skills"]
+        )
+        self.assertIn("rag", installed["skills"]["llamaindex-ingest"]["personas"])
+        self.assertIn("rag", installed["skills"]["pydantic-ai-rag"]["personas"])
+        self.assertIn(
+            "rag", installed["skills"]["python-db-conventions"]["personas"]
+        )
+        self.assertIn("rag", installed["skills"]["tdd"]["personas"])
+        self.assertNotIn("fastmcp", installed["personas"]["rag"]["skills"])
+
+    def test_mcp_profile_installs_fastmcp_not_rag(self):
+        code = main(
+            ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "mcp"]
+        )
+        self.assertEqual(code, 0)
+        self.assertTrue((self.dest / "skills/fastmcp/SKILL.md").is_file())
+        self.assertTrue((self.dest / "skills/domain-reviewer/SKILL.md").is_file())
+        self.assertFalse((self.dest / "skills/llamaindex-ingest/SKILL.md").exists())
+        self.assertFalse((self.dest / "skills/pydantic-ai-rag/SKILL.md").exists())
+        installed = load_yaml_file(self.dest / "my-cursor-setup-catalog.yaml")
+        self.assertEqual(
+            installed["personas"]["mcp"]["skills"],
+            ["fastmcp", "tdd", "verification-before-completion"],
+        )
+        self.assertIn("mcp", installed["skills"]["fastmcp"]["personas"])
+        self.assertIn("mcp", installed["skills"]["tdd"]["personas"])
+        self.assertNotIn("mcp", installed["skills"]["llamaindex-ingest"]["personas"])
+
+    def test_rag_then_mcp_accumulates(self):
+        main(
+            ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "rag"]
+        )
+        main(
+            ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "mcp"]
+        )
+        self.assertTrue((self.dest / "skills/llamaindex-ingest/SKILL.md").is_file())
+        self.assertTrue((self.dest / "skills/pydantic-ai-rag/SKILL.md").is_file())
+        self.assertTrue((self.dest / "skills/fastmcp/SKILL.md").is_file())
+
     def test_state_drop_prunes_web_ts_on_next_bootstrap(self):
         main(
             [
