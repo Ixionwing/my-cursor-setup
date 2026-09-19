@@ -1024,12 +1024,47 @@ class V1RepoTests(unittest.TestCase):
                 (dest / "skills/verification-before-completion/SKILL.md").is_file()
             )
             self.assertTrue((dest / "skills/tdd/SKILL.md").is_file())
-            self.assertTrue((dest / "agents/implementer.md").is_file())
-            self.assertTrue((dest / "agents/reviewer.md").is_file())
+            self.assertFalse((dest / "agents/implementer.md").exists())
+            self.assertFalse((dest / "agents/reviewer.md").exists())
             self.assertTrue((dest / "rules/route-context.mdc").is_file())
             self.assertTrue((dest / "rules/commit-style.mdc").is_file())
             self.assertTrue((dest / "rules/quality-style.mdc").is_file())
             installed = load_yaml_file(dest / "my-cursor-setup-catalog.yaml")
+            self.assertEqual(installed["profiles"]["core"]["agents"], [])
+            self.assertNotIn("implementer", installed.get("agents") or {})
+            self.assertNotIn("reviewer", installed.get("agents") or {})
+            impl_personas = [
+                "web-ts",
+                "backend-node",
+                "backend-python",
+                "infra",
+                "db-python",
+                "db-prisma",
+                "ci",
+            ]
+            for pid in impl_personas:
+                skills = installed["personas"][pid]["skills"]
+                self.assertIn("tdd", skills, pid)
+                self.assertIn("verification-before-completion", skills, pid)
+            self.assertIn(
+                "verification-before-completion",
+                installed["personas"]["domain-reviewer"]["skills"],
+            )
+            self.assertNotIn("tdd", installed["personas"]["domain-reviewer"]["skills"])
+            self.assertEqual(installed["skills"]["tdd"]["agents"], [])
+            self.assertEqual(
+                installed["skills"]["verification-before-completion"]["agents"], []
+            )
+            for pid in impl_personas:
+                self.assertIn(pid, installed["skills"]["tdd"]["personas"])
+                self.assertIn(
+                    pid,
+                    installed["skills"]["verification-before-completion"]["personas"],
+                )
+            self.assertIn(
+                "domain-reviewer",
+                installed["skills"]["verification-before-completion"]["personas"],
+            )
             self.assertIn("quality-style", installed["profiles"]["core"]["rules"])
             self.assertTrue(installed["rules"]["quality-style"]["alwaysApply"])
             self.assertTrue((dest / "hooks/deny_destructive_shell.py").is_file())
