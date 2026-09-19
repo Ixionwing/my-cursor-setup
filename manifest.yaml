@@ -1,0 +1,122 @@
+local_only:
+  - .my-cursor-setup-state.json
+
+files:
+  verification-before-completion:
+    src: cursor/skills/verification-before-completion
+    dest: skills/verification-before-completion
+  tdd:
+    src: cursor/skills/tdd
+    dest: skills/tdd
+  implementer:
+    src: cursor/agents/implementer.md
+    dest: agents/implementer.md
+  reviewer:
+    src: cursor/agents/reviewer.md
+    dest: agents/reviewer.md
+  route-context:
+    src: cursor/rules/route-context.mdc
+    dest: rules/route-context.mdc
+  commit-style:
+    src: cursor/rules/commit-style.mdc
+    dest: rules/commit-style.mdc
+  quality-style:
+    src: cursor/rules/quality-style.mdc
+    dest: rules/quality-style.mdc
+  backend-node:
+    src: cursor/rules/backend-node.mdc
+    dest: rules/backend-node.mdc
+  backend-python:
+    src: cursor/rules/backend-python.mdc
+    dest: rules/backend-python.mdc
+  node-api-conventions:
+    src: cursor/skills/node-api-conventions
+    dest: skills/node-api-conventions
+  python-api-conventions:
+    src: cursor/skills/python-api-conventions
+    dest: skills/python-api-conventions
+  domain-reviewer:
+    src: cursor/skills/domain-reviewer
+    dest: skills/domain-reviewer
+  vercel-react-best-practices:
+    src: cursor/skills/vercel-react-best-practices
+    dest: skills/vercel-react-best-practices
+  terraform-skill:
+    src: cursor/skills/terraform-skill
+    dest: skills/terraform-skill
+  docker-conventions:
+    src: cursor/skills/docker-conventions
+    dest: skills/docker-conventions
+  web-ts-ui:
+    src: cursor/rules/web-ts-ui.mdc
+    dest: rules/web-ts-ui.mdc
+  terraform-files:
+    src: cursor/rules/terraform-files.mdc
+    dest: rules/terraform-files.mdc
+  docker-files:
+    src: cursor/rules/docker-files.mdc
+    dest: rules/docker-files.mdc
+  kubernetes-skill:
+    src: cursor/skills/kubernetes-skill
+    dest: skills/kubernetes-skill
+  k8s-files:
+    src: cursor/rules/k8s-files.mdc
+    dest: rules/k8s-files.mdc
+  python-db-conventions:
+    src: cursor/skills/python-db-conventions
+    dest: skills/python-db-conventions
+  prisma-cli:
+    src: cursor/skills/prisma-cli
+    dest: skills/prisma-cli
+  prisma-client-api:
+    src: cursor/skills/prisma-client-api
+    dest: skills/prisma-client-api
+  prisma-database-setup:
+    src: cursor/skills/prisma-database-setup
+    dest: skills/prisma-database-setup
+  db-python:
+    src: cursor/rules/db-python.mdc
+    dest: rules/db-python.mdc
+  db-prisma:
+    src: cursor/rules/db-prisma.mdc
+    dest: rules/db-prisma.mdc
+  github-actions:
+    src: cursor/skills/github-actions
+    dest: skills/github-actions
+  github-actions-files:
+    src: cursor/rules/github-actions-files.mdc
+    dest: rules/github-actions-files.mdc
+  deny-destructive-shell:
+    src: cursor/hooks/deny_destructive_shell.py
+    dest: hooks/deny_destructive_shell.py
+  deny-destructive-db:
+    src: cursor/hooks/deny_destructive_db.py
+    dest: hooks/deny_destructive_db.py
+  deny-secrets-shell:
+    src: cursor/hooks/deny_secrets_shell.py
+    dest: hooks/deny_secrets_shell.py
+  ask-unexpected-network:
+    src: cursor/hooks/ask_unexpected_network.py
+    dest: hooks/ask_unexpected_network.py
+  deny-secret-reads:
+    src: cursor/hooks/deny_secret_reads.py
+    dest: hooks/deny_secret_reads.py
+  deny-destructive-containers:
+    src: cursor/hooks/deny_destructive_containers.py
+    dest: hooks/deny_destructive_containers.py
+  deny-destructive-github:
+    src: cursor/hooks/deny_destructive_github.py
+    dest: hooks/deny_destructive_github.py
+  safety-match:
+    src: cursor/hooks/safety_match.py
+    dest: hooks/safety_match.py
+    always: true
+  hooks-json:
+    src: cursor/hooks.json
+    dest: hooks.json
+    merge: hooks
+    hook: deny-destructive-shell
+  catalog:
+    src: catalog.yaml
+    dest: my-cursor-setup-catalog.yaml
+    always: true

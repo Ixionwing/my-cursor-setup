@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {"command": "./hooks/deny_destructive_shell.py", "failClosed": true},
+      {"command": "./hooks/deny_destructive_db.py", "failClosed": true},
+      {"command": "./hooks/deny_secrets_shell.py", "failClosed": true},
+      {"command": "./hooks/ask_unexpected_network.py", "failClosed": true},
+      {"command": "./hooks/deny_destructive_containers.py", "failClosed": true},
+      {"command": "./hooks/deny_destructive_github.py", "failClosed": true}
+    ],
+    "beforeReadFile": [
+      {"command": "./hooks/deny_secret_reads.py", "failClosed": true}
+    ]
+  }
+}

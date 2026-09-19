@@ -1,0 +1,9 @@
+---
+description: Alembic/SQLAlchemy file conventions
+globs: "alembic.ini,**/alembic/**"
+alwaysApply: false
+---
+
+# DB Python files
+
+When these paths are in play, follow `python-db-conventions`.

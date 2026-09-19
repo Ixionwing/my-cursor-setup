@@ -1,0 +1,9 @@
+---
+description: Node/Express API file conventions
+globs: "**/server/**,**/api/**/*.{js,mjs,cjs,ts},**/routes/**"
+alwaysApply: false
+---
+
+# Backend Node files
+
+When these paths are in play, follow `node-api-conventions`. This glob is a hint, not a `.ts` monopoly — UI `*.tsx` is web-ts, not this pack.

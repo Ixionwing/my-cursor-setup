@@ -1,0 +1,9 @@
+---
+description: Terraform and OpenTofu file conventions
+globs: "**/*.{tf,tfvars}"
+alwaysApply: false
+---
+
+# Terraform files
+
+When these paths are in play, follow `terraform-skill`.

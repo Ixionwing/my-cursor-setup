@@ -1,0 +1,9 @@
+---
+description: Python/FastAPI file conventions
+globs: "**/*.py,**/pyproject.toml"
+alwaysApply: false
+---
+
+# Backend Python files
+
+When these paths are in play, follow `python-api-conventions`.

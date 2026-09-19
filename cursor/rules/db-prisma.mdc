@@ -1,0 +1,9 @@
+---
+description: Prisma schema and config conventions
+globs: "**/schema.prisma,**/prisma.config.ts,**/prisma/**"
+alwaysApply: false
+---
+
+# DB Prisma files
+
+When these paths are in play, follow `prisma-cli` and `prisma-client-api`.

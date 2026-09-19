@@ -1,0 +1,11 @@
+---
+description: Commit message style and no-secrets policy
+alwaysApply: true
+---
+
+# Commits
+
+- One or two sentences on why, not a file list.
+- Never commit secrets, `.env`, credentials, or private keys.
+- Only commit when the user asked, or when the current repo's documented plan includes a commit step the user already approved.
+- Do not skip hooks (`--no-verify`) unless the user explicitly asked.

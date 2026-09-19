@@ -1,0 +1,41 @@
+Third-party materials
+=====================
+
+verification-before-completion
+  Upstream project: Superpowers (https://github.com/obra/superpowers)
+  Snapshot: Cursor plugin cursor-public/superpowers
+  License: MIT
+  Copyright (c) 2025 Jesse Vincent
+  Files: third_party/superpowers/
+
+tdd
+  Upstream: https://github.com/mattpocock/skills (skills/engineering/tdd)
+  Snapshot: c55ee46073ed923f86ce59a5eb3b6d895095d1b7
+  License: MIT
+  Copyright (c) 2026 Matt Pocock
+  Files: third_party/mattpocock-skills/
+
+vercel-react-best-practices
+  Upstream: https://github.com/vercel-labs/agent-skills (skills/react-best-practices)
+  Snapshot: 063bee94c3f4df8453406c830b0a7df0f2860278
+  License: MIT
+  Files: third_party/vercel-labs-agent-skills/
+
+terraform-skill
+  Upstream: https://github.com/antonbabenko/terraform-skill
+  Snapshot: 0a3a4a66e99001347d36a41e10260a825be3ab62
+  License: Apache-2.0
+  Copyright: Anton Babenko
+  Files: third_party/antonbabenko-terraform-skill/
+
+kubernetes-skill
+  Upstream: https://github.com/LukasNiessen/kubernetes-skill
+  Snapshot: 34f93c1e409156958cc7c410ab1aa88ab512f10f (subset: core refs + Helm/Kustomize + EKS; omitted GKE/AKS/OpenShift/GitOps/observability CRR)
+  License: MIT
+  Files: third_party/kubernetes-skill/
+
+prisma-cli, prisma-client-api, prisma-database-setup
+  Upstream: https://github.com/prisma/skills
+  Snapshot: 1123817e60d15ca0f3af91878923241dee7e3b09
+  License: MIT
+  Files: third_party/prisma-skills/

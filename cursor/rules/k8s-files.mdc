@@ -1,0 +1,9 @@
+---
+description: Kubernetes and Helm file conventions
+globs: "**/k8s/**,**/kubernetes/**,**/charts/**,**/Chart.yaml"
+alwaysApply: false
+---
+
+# Kubernetes / Helm files
+
+When these paths are in play, follow `kubernetes-skill`.

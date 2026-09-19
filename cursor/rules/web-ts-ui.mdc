@@ -1,0 +1,9 @@
+---
+description: React/Next UI file conventions
+globs: "**/*.{tsx,jsx},**/*.module.css"
+alwaysApply: false
+---
+
+# Web TypeScript UI files
+
+When these paths are in play, follow `vercel-react-best-practices`. Do not treat every `*.ts` file as UI.

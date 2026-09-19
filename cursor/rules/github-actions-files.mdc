@@ -1,0 +1,9 @@
+---
+description: GitHub Actions workflow and composite-action conventions
+globs: "**/.github/workflows/*.{yml,yaml},**/.github/actions/**"
+alwaysApply: false
+---
+
+# GitHub Actions files
+
+When these paths are in play, follow `github-actions`.

@@ -1,0 +1,155 @@
+profiles:
+  core:
+    skills: [verification-before-completion, tdd]
+    agents: [implementer, reviewer]
+    rules: [route-context, commit-style, quality-style]
+    hooks: [deny-destructive-shell, deny-destructive-db, deny-secrets-shell, ask-unexpected-network, deny-secret-reads, deny-destructive-containers, deny-destructive-github]
+  web-ts:
+    skills: [vercel-react-best-practices, domain-reviewer]
+    agents: []
+    rules: [web-ts-ui]
+    hooks: []
+  backend:
+    skills: [node-api-conventions, python-api-conventions, domain-reviewer]
+    agents: []
+    rules: [backend-node, backend-python]
+    hooks: []
+  infra:
+    skills: [terraform-skill, docker-conventions, kubernetes-skill, domain-reviewer]
+    agents: []
+    rules: [terraform-files, docker-files, k8s-files]
+    hooks: []
+  db:
+    skills: [prisma-cli, prisma-client-api, prisma-database-setup, python-db-conventions, domain-reviewer]
+    agents: []
+    rules: [db-prisma, db-python]
+    hooks: []
+  ci:
+    skills: [github-actions, domain-reviewer]
+    agents: []
+    rules: [github-actions-files]
+    hooks: []
+
+personas:
+  web-ts:
+    skills: [vercel-react-best-practices]
+  backend-node:
+    skills: [node-api-conventions]
+  backend-python:
+    skills: [python-api-conventions]
+  infra:
+    skills: [terraform-skill, docker-conventions, kubernetes-skill]
+  db-python:
+    skills: [python-db-conventions]
+  db-prisma:
+    skills: [prisma-cli, prisma-client-api, prisma-database-setup]
+  ci:
+    skills: [github-actions]
+  domain-reviewer:
+    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions]
+
+skills:
+  verification-before-completion:
+    origin: third_party/superpowers/verification-before-completion
+    agents: [implementer, reviewer]
+    personas: []
+  tdd:
+    origin: third_party/mattpocock-skills/tdd
+    agents: [implementer]
+    personas: []
+  vercel-react-best-practices:
+    origin: third_party/vercel-labs-agent-skills/react-best-practices
+    agents: []
+    personas: [web-ts, domain-reviewer]
+  node-api-conventions:
+    origin: original
+    agents: []
+    personas: [backend-node, domain-reviewer]
+  python-api-conventions:
+    origin: original
+    agents: []
+    personas: [backend-python, domain-reviewer]
+  terraform-skill:
+    origin: third_party/antonbabenko-terraform-skill
+    agents: []
+    personas: [infra, domain-reviewer]
+  docker-conventions:
+    origin: original
+    agents: []
+    personas: [infra, domain-reviewer]
+  kubernetes-skill:
+    origin: third_party/kubernetes-skill
+    agents: []
+    personas: [infra, domain-reviewer]
+  python-db-conventions:
+    origin: original
+    agents: []
+    personas: [db-python, domain-reviewer]
+  prisma-cli:
+    origin: third_party/prisma-skills/prisma-cli
+    agents: []
+    personas: [db-prisma, domain-reviewer]
+  prisma-client-api:
+    origin: third_party/prisma-skills/prisma-client-api
+    agents: []
+    personas: [db-prisma, domain-reviewer]
+  prisma-database-setup:
+    origin: third_party/prisma-skills/prisma-database-setup
+    agents: []
+    personas: [db-prisma, domain-reviewer]
+  domain-reviewer:
+    origin: original
+    agents: []
+    personas: [domain-reviewer]
+  github-actions:
+    origin: original
+    agents: []
+    personas: [ci, domain-reviewer]
+
+agents:
+  implementer:
+    skills: [verification-before-completion, tdd]
+  reviewer:
+    skills: [verification-before-completion]
+
+rules:
+  route-context:
+    alwaysApply: true
+  commit-style:
+    alwaysApply: true
+  quality-style:
+    alwaysApply: true
+  web-ts-ui:
+    alwaysApply: false
+  backend-node:
+    alwaysApply: false
+  backend-python:
+    alwaysApply: false
+  terraform-files:
+    alwaysApply: false
+  docker-files:
+    alwaysApply: false
+  k8s-files:
+    alwaysApply: false
+  db-prisma:
+    alwaysApply: false
+  db-python:
+    alwaysApply: false
+  github-actions-files:
+    alwaysApply: false
+
+hooks:
+  deny-destructive-shell:
+    event: beforeShellExecution
+  deny-destructive-db:
+    event: beforeShellExecution
+  deny-secrets-shell:
+    event: beforeShellExecution
+  ask-unexpected-network:
+    event: beforeShellExecution
+  deny-secret-reads:
+    event: beforeReadFile
+  deny-destructive-containers:
+    event: beforeShellExecution
+  deny-destructive-github:
+    event: beforeShellExecution

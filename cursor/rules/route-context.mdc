@@ -1,0 +1,42 @@
+---
+description: Route to the named skill/persona for the task; do not dump the whole library into context
+alwaysApply: true
+---
+
+# Context routing
+
+Read `~/.cursor/my-cursor-setup-catalog.yaml` when choosing skills or personas.
+
+Load only what the current task needs. Do not attach every skill, agent, or rule.
+
+In-session domain personas (do not spawn Task subagents for this):
+- React/Next UI → persona `web-ts` (skill `vercel-react-best-practices`)
+- Node/Express API → persona `backend-node` (skill `node-api-conventions`)
+- Python/FastAPI → persona `backend-python` (skill `python-api-conventions`)
+- Terraform/OpenTofu → persona `infra` (skill `terraform-skill`)
+- Feature or bug work test-first → skill `tdd` (core; also on agent `implementer`)
+- Dockerfile / Compose → skill `docker-conventions` (persona `infra`)
+- Kubernetes manifests, Helm charts, Kustomize, EKS → skill `kubernetes-skill` (persona `infra`)
+- GitHub Actions / `.github/workflows` / `.github/actions` → persona `ci` (skill `github-actions`)
+- Superpowers is not part of this repository. Do not assume those plugin skills are present.
+- Prisma (schema.prisma, prisma migrate) → persona `db-prisma` (skills `prisma-cli`, `prisma-client-api`, `prisma-database-setup`)
+- Python SQLAlchemy/Alembic → persona `db-python` (skill `python-db-conventions`)
+- Review of domain code → persona `domain-reviewer` (skill `domain-reviewer`, then the matching domain skill)
+- Quality/style, lint, format, or typecheck → rule `quality-style`, then the matching domain skill for tool names
+
+`.ts` is not enough to choose web-ts vs backend-node. Use the user's task and paths.
+
+Prisma vs SQLAlchemy from the user's task and paths; `.ts`/`.py` is not enough.
+
+Terraform, Docker, and Kubernetes/Helm are persona `infra`. Pick the skill from the task and paths; `*.yaml` is not enough.
+
+GitHub Actions is persona `ci`. Pick it from the task and paths (`.github/workflows`, `.github/actions`); `*.yml` is not enough to choose `ci` vs `infra`.
+
+Production env files (`.env.production`, `.env.prod`, `.env.production.local`, `.env.prod.local`): do not read them. Do not ask the user to paste their contents into chat. Tell the user to apply or edit those files themselves.
+
+v1 Cursor agents (optional delegation, not for domain packs):
+- Implementation work → agent `implementer` (skill `verification-before-completion`)
+- Review of existing changes → agent `reviewer` (skill `verification-before-completion`)
+- Do not send the reviewer to re-run the implementer.
+
+If catalog.yaml and an agent's or persona's skill list disagree, the catalog wins.

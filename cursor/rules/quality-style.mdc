@@ -1,0 +1,12 @@
+---
+description: Match the repo formatter, linter, and typecheck; bootstrap official defaults when none exist
+alwaysApply: true
+---
+
+# Quality and style
+
+If the repo already has formatter, linter, or typecheck config, use those. Do not add a parallel stack (no ESLint plus Biome, no Ruff plus Black plus isort).
+
+If this is a new project and those configs are missing, use the installed domain pack’s tools and official presets (see that domain skill). Write config in the app repo. Do not copy lint config out of this Cursor setup.
+
+Run those checks before claiming done (verification-before-completion). Do not `git commit` or `git push --no-verify`.
