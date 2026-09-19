@@ -8,12 +8,6 @@ files:
   tdd:
     src: cursor/skills/tdd
     dest: skills/tdd
-  implementer:
-    src: cursor/agents/implementer.md
-    dest: agents/implementer.md
-  reviewer:
-    src: cursor/agents/reviewer.md
-    dest: agents/reviewer.md
   route-context:
     src: cursor/rules/route-context.mdc
     dest: rules/route-context.mdc

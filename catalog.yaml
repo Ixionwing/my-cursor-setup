@@ -1,7 +1,7 @@
 profiles:
   core:
     skills: [verification-before-completion, tdd]
-    agents: [implementer, reviewer]
+    agents: []
     rules: [route-context, commit-style, quality-style]
     hooks: [deny-destructive-shell, deny-destructive-db, deny-secrets-shell, ask-unexpected-network, deny-secret-reads, deny-destructive-containers, deny-destructive-github]
   web-ts:
@@ -32,31 +32,31 @@ profiles:
 
 personas:
   web-ts:
-    skills: [vercel-react-best-practices]
+    skills: [vercel-react-best-practices, tdd, verification-before-completion]
   backend-node:
-    skills: [node-api-conventions]
+    skills: [node-api-conventions, tdd, verification-before-completion]
   backend-python:
-    skills: [python-api-conventions]
+    skills: [python-api-conventions, tdd, verification-before-completion]
   infra:
-    skills: [terraform-skill, docker-conventions, kubernetes-skill]
+    skills: [terraform-skill, docker-conventions, kubernetes-skill, tdd, verification-before-completion]
   db-python:
-    skills: [python-db-conventions]
+    skills: [python-db-conventions, tdd, verification-before-completion]
   db-prisma:
-    skills: [prisma-cli, prisma-client-api, prisma-database-setup]
+    skills: [prisma-cli, prisma-client-api, prisma-database-setup, tdd, verification-before-completion]
   ci:
-    skills: [github-actions]
+    skills: [github-actions, tdd, verification-before-completion]
   domain-reviewer:
-    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions]
+    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions, verification-before-completion]
 
 skills:
   verification-before-completion:
     origin: third_party/superpowers/verification-before-completion
-    agents: [implementer, reviewer]
-    personas: []
+    agents: []
+    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci, domain-reviewer]
   tdd:
     origin: third_party/mattpocock-skills/tdd
-    agents: [implementer]
-    personas: []
+    agents: []
+    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci]
   vercel-react-best-practices:
     origin: third_party/vercel-labs-agent-skills/react-best-practices
     agents: []
@@ -105,12 +105,6 @@ skills:
     origin: original
     agents: []
     personas: [ci, domain-reviewer]
-
-agents:
-  implementer:
-    skills: [verification-before-completion, tdd]
-  reviewer:
-    skills: [verification-before-completion]
 
 rules:
   route-context:

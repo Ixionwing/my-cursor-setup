@@ -6,7 +6,7 @@ description: Use when about to claim work is complete, fixed, or passing, before
 > Vendored from Superpowers (`verification-before-completion`), MIT License,
 > Copyright (c) 2025 Jesse Vincent. Unmodified snapshot:
 > `third_party/superpowers/verification-before-completion/SKILL.md`.
-> Used by agents `implementer` and `reviewer` (see catalog.yaml).
+> Listed on catalog personas (implementation personas plus `domain-reviewer`; see catalog.yaml).
 
 # Verification Before Completion
 
