@@ -1,6 +1,6 @@
 ---
 name: domain-reviewer
-description: Reviews UI, Node API, Python API, Terraform, Docker, Kubernetes/Helm, GitHub Actions, Prisma, or Python Postgres changes against the matching domain skill. Use when reviewing domain code. Do not implement the change. Do not spawn subagents.
+description: Reviews UI, Node API, Python API, Terraform, Docker, Kubernetes/Helm, GitHub Actions, Prisma, Python Postgres, LlamaIndex ingest, Pydantic AI RAG, or FastMCP changes against the matching domain skill. Use when reviewing domain code. Do not implement the change. Do not spawn subagents.
 ---
 
 # Domain review
@@ -17,6 +17,9 @@ Read the matching domain skill and review against it:
 - GitHub Actions / `.github/workflows` → `github-actions`
 - Prisma / `schema.prisma` → `prisma-cli` and `prisma-client-api`
 - Python Postgres / Alembic → `python-db-conventions`
+- LlamaIndex ingest / pgvector → `llamaindex-ingest`
+- Pydantic AI RAG → `pydantic-ai-rag`
+- FastMCP / Python MCP → `fastmcp`
 
 Treat skipped formatter/linter/typecheck for that domain as Critical when the author claimed done.
 

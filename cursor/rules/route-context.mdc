@@ -23,8 +23,14 @@ In-session domain personas (do not spawn Task subagents for this):
 - Python SQLAlchemy/Alembic → persona `db-python` (skill `python-db-conventions`)
 - Review of domain code → persona `domain-reviewer` (skill `domain-reviewer`, then the matching domain skill)
 - Quality/style, lint, format, or typecheck → rule `quality-style`, then the matching domain skill for tool names
+- LlamaIndex ingest or Pydantic AI RAG over Postgres/pgvector → persona `rag` (skills `llamaindex-ingest`, `pydantic-ai-rag`, `python-db-conventions`)
+- FastMCP / Python MCP server → persona `mcp` (skill `fastmcp`)
 
 After choosing a persona, load only the skills listed on that persona in `~/.cursor/my-cursor-setup-catalog.yaml` (domain skill(s) plus `tdd` / `verification-before-completion` when listed). Implement and review in this session. Do not spawn Cursor agents from this setup (none are installed). Do not reply with a routing tree instead of doing the work.
+
+If the MCP server’s tools are that retriever, load both personas’ skills (`rag` and `mcp`) and implement. Do not reply with a routing tree.
+`.py` is not enough to choose `rag` vs `mcp` vs `backend-python` vs `db-python`. Use the task.
+Graph DBs are not in this setup yet; do not invent Neo4j from these packs.
 
 `.ts` is not enough to choose web-ts vs backend-node. Use the user's task and paths.
 

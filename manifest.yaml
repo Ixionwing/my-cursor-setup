@@ -77,6 +77,15 @@ files:
   github-actions:
     src: cursor/skills/github-actions
     dest: skills/github-actions
+  llamaindex-ingest:
+    src: cursor/skills/llamaindex-ingest
+    dest: skills/llamaindex-ingest
+  pydantic-ai-rag:
+    src: cursor/skills/pydantic-ai-rag
+    dest: skills/pydantic-ai-rag
+  fastmcp:
+    src: cursor/skills/fastmcp
+    dest: skills/fastmcp
   github-actions-files:
     src: cursor/rules/github-actions-files.mdc
     dest: rules/github-actions-files.mdc

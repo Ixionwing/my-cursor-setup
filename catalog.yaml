@@ -29,6 +29,16 @@ profiles:
     agents: []
     rules: [github-actions-files]
     hooks: []
+  rag:
+    skills: [llamaindex-ingest, pydantic-ai-rag, python-db-conventions, domain-reviewer]
+    agents: []
+    rules: []
+    hooks: []
+  mcp:
+    skills: [fastmcp, domain-reviewer]
+    agents: []
+    rules: []
+    hooks: []
 
 personas:
   web-ts:
@@ -45,18 +55,22 @@ personas:
     skills: [prisma-cli, prisma-client-api, prisma-database-setup, tdd, verification-before-completion]
   ci:
     skills: [github-actions, tdd, verification-before-completion]
+  rag:
+    skills: [llamaindex-ingest, pydantic-ai-rag, python-db-conventions, tdd, verification-before-completion]
+  mcp:
+    skills: [fastmcp, tdd, verification-before-completion]
   domain-reviewer:
-    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions, verification-before-completion]
+    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions, llamaindex-ingest, pydantic-ai-rag, fastmcp, verification-before-completion]
 
 skills:
   verification-before-completion:
     origin: third_party/superpowers/verification-before-completion
     agents: []
-    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci, domain-reviewer]
+    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci, rag, mcp, domain-reviewer]
   tdd:
     origin: third_party/mattpocock-skills/tdd
     agents: []
-    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci]
+    personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci, rag, mcp]
   vercel-react-best-practices:
     origin: third_party/vercel-labs-agent-skills/react-best-practices
     agents: []
@@ -84,7 +98,7 @@ skills:
   python-db-conventions:
     origin: original
     agents: []
-    personas: [db-python, domain-reviewer]
+    personas: [db-python, domain-reviewer, rag]
   prisma-cli:
     origin: third_party/prisma-skills/prisma-cli
     agents: []
@@ -105,6 +119,18 @@ skills:
     origin: original
     agents: []
     personas: [ci, domain-reviewer]
+  llamaindex-ingest:
+    origin: original
+    agents: []
+    personas: [rag, domain-reviewer]
+  pydantic-ai-rag:
+    origin: original
+    agents: []
+    personas: [rag, domain-reviewer]
+  fastmcp:
+    origin: original
+    agents: []
+    personas: [mcp, domain-reviewer]
 
 rules:
   route-context:
