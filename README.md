@@ -10,9 +10,7 @@ A small, auditable Cursor setup that does five jobs:
    `curl`/`wget`/`httpie`/`nc`. Hook process crashes deny the action.
 2. **Process:** installs focused verification and TDD (`tdd`) guidance.
    Superpowers is not bundled.
-3. **Personas:** v1 `implementer`/`reviewer` agents plus in-session domain
-   personas (React, Node, Python, Terraform/Docker/Kubernetes, GitHub Actions, Prisma,
-   SQLAlchemy) that the main agent adopts.
+3. **Personas:** in-session catalog personas (React, Node, Python, Terraform/Docker/Kubernetes, GitHub Actions, Prisma, SQLAlchemy). Each implementation persona includes `tdd` and `verification-before-completion`; `domain-reviewer` includes verification-before-completion. This setup does not ship Cursor `implementer`/`reviewer` agent files.
 4. **Quality/style:** `commit-style` for commits; `quality-style` for formatter/linter/typecheck
    (use the repo’s stack, or the domain default when bootstrapping). `git commit`/`push
    --no-verify` is denied.

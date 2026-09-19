@@ -8,7 +8,7 @@ The repository tree contains the source payload and repository-only metadata:
 
 ```text
 my-cursor-setup/
-├── cursor/             installable skills, agents, rules, and hooks
+├── cursor/             installable skills, rules, and hooks
 ├── catalog.yaml        artifact graph and profile ID sets
 ├── manifest.yaml       source-to-destination mapping
 ├── scripts/            bootstrap implementation
@@ -35,16 +35,16 @@ Files under `cursor/` define an artifact's identity and behavior. `catalog.yaml`
 
 | Kind | Installed? | Role |
 |------|------------|------|
-| Cursor agent | `cursor/agents/*.md` | v1 `implementer` and `reviewer` only |
+| Cursor agent | not shipped | This repository does not install dest `agents/*.md` |
 | Persona | catalog only | In-session role the main agent adopts; not a file under `cursor/agents/` |
 | Skill | `cursor/skills/<name>/` | Domain workflow or vendor port |
 | Rule | `cursor/rules/<name>.mdc` | Always-on: `route-context`, `commit-style`, `quality-style`. Other rules are glob-scoped (`alwaysApply: false`) |
 
-For a skill, `skills.<id>.agents` means “used by these Cursor subagents.” It does not dispatch those agents. Domain packs use **personas** (`personas.<id>.skills` / `skills.<id>.personas`). v2 has no catalog `dispatch` field. Skill-to-agent, agent-to-skill, skill-to-persona, and persona-to-skill edges must remain symmetric.
+For a skill, `skills.<id>.agents` may be empty. It does not dispatch Cursor subagents. Domain packs use **personas** (`personas.<id>.skills` / `skills.<id>.personas`). v2 has no catalog `dispatch` field. Persona edges (`personas.<id>.skills` / `skills.<id>.personas`) must stay symmetric. Skill-to-agent, agent-to-skill symmetry applies only when agent IDs exist.
 
 Glob-scoped rules are hints for matching files. Do not treat every `*.ts` file as UI; `.ts` overlap between web-ts and backend-node is resolved by the task (React vs Node API) in `route-context`. Prisma vs SQLAlchemy is chosen from the task and paths, not from `.ts`/`.py` alone. Terraform, Docker, and Kubernetes/Helm share persona `infra`; pick the skill from the task and paths. Do not glob all `**/*.yaml`. GitHub Actions shares no persona with `infra`; `*.yml` is not enough to choose `ci` vs `infra`.
 
-`core` always installs safety hooks and process skills (`verification-before-completion` and `tdd`; `tdd` is also on the `implementer` allowlist). Superpowers is not part of this repository. Domain skills and glob rules come from optional profiles (`web-ts`, `backend`, `infra`, `db`, `ci`). `--profile infra` is one persona with three skills (`terraform-skill`, `docker-conventions`, `kubernetes-skill`); Helm has no catalog ID. `kubernetes-skill` is a KubeShark subset (core refs plus Helm/Kustomize plus EKS; other cloud CRR files are omitted). `--profile db` adds Prisma vendor skills plus `python-db-conventions`; it does not gate the safety hooks. `--profile ci` adds original `github-actions` plus glob `github-actions-files` (`.github/workflows` and `.github/actions`, not `**/*.yml`). Reusable workflows and composite actions have no extra catalog ID. `--profile infra` does not install GitHub Actions.
+`core` always installs safety hooks and process skills (`verification-before-completion` and `tdd`). Superpowers is not part of this repository. Domain skills and glob rules come from optional profiles (`web-ts`, `backend`, `infra`, `db`, `ci`). `--profile infra` is one persona with three skills (`terraform-skill`, `docker-conventions`, `kubernetes-skill`); Helm has no catalog ID. `kubernetes-skill` is a KubeShark subset (core refs plus Helm/Kustomize plus EKS; other cloud CRR files are omitted). `--profile db` adds Prisma vendor skills plus `python-db-conventions`; it does not gate the safety hooks. `--profile ci` adds original `github-actions` plus glob `github-actions-files` (`.github/workflows` and `.github/actions`, not `**/*.yml`). Reusable workflows and composite actions have no extra catalog ID. `--profile infra` does not install GitHub Actions.
 
 Domain skills name bootstrap formatters, linters, and typecheckers plus official presets. This repository does not ship `eslint.config.js` or `ruff.toml`; the agent writes those in the app repo.
 
