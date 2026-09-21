@@ -10,7 +10,7 @@ A small, auditable Cursor setup that does five jobs:
    `curl`/`wget`/`httpie`/`nc`. Hook process crashes deny the action.
 2. **Process:** installs focused verification and TDD (`tdd`) guidance.
    Superpowers is not bundled.
-3. **Personas:** in-session catalog personas (React, Node, Python, Terraform/Docker/Kubernetes, GitHub Actions, Prisma, SQLAlchemy, pgvector RAG, FastMCP). Each implementation persona includes `tdd` and `verification-before-completion`; `domain-reviewer` includes verification-before-completion. This setup does not ship Cursor `implementer`/`reviewer` agent files.
+3. **Personas:** in-session catalog personas (React, Node, Python, Terraform/Docker/Kubernetes, GitHub Actions, Prisma, SQLAlchemy, pgvector RAG, FastMCP). React/Next `web-ts` includes performance, visual design, and interface guidelines. Each implementation persona includes `tdd` and `verification-before-completion`; `domain-reviewer` includes verification-before-completion. This setup does not ship Cursor `implementer`/`reviewer` agent files.
 4. **Quality/style:** `commit-style` for commits; `quality-style` for formatter/linter/typecheck
    (use the repo’s stack, or the domain default when bootstrapping). `git commit`/`push
    --no-verify` is denied.
@@ -38,7 +38,11 @@ Useful controls:
 - `--uninstall` removes this setup’s in-sync dest files and unmerges our hook commands.
 - `--profile NAME` adds an optional profile to the always-enabled `core`.
   `web-ts`, `backend`, `infra`, `db`, `ci`, `rag`, and `mcp` add domain skills. Domain work is adopted
-  in this session (no new subagents). `backend` includes both Node/Express
+  in this session (no new subagents). `web-ts` includes React/Next performance
+  (`vercel-react-best-practices`), visual design (`frontend-design`), and
+  interface/a11y guidelines (`web-design-guidelines`). If the app has no
+  styling framework, bootstrap MUI + Pigment CSS; new Pigment apps use
+  webpack, not Turbopack. `backend` includes both Node/Express
   and Python/FastAPI. `infra` includes Terraform, Docker, and Kubernetes/Helm
   (Helm is covered by `kubernetes-skill`, not a separate catalog ID). `db`
   includes Prisma and SQLAlchemy/Alembic. `ci` includes GitHub Actions
