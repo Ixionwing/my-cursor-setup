@@ -955,6 +955,57 @@ class DomainProfileTests(unittest.TestCase):
         self.assertFalse((self.dest / "skills/terraform-skill/SKILL.md").exists())
         self.assertFalse((self.dest / "skills/node-api-conventions/SKILL.md").exists())
 
+    def test_core_omits_web_ts_design_skills(self):
+        main(["--dest", str(self.dest), "--repo", str(self.repo)])
+        self.assertFalse((self.dest / "skills/frontend-design/SKILL.md").exists())
+        self.assertFalse(
+            (self.dest / "skills/web-design-guidelines/SKILL.md").exists()
+        )
+
+    def test_web_ts_profile_installs_design_and_guidelines(self):
+        code = main(
+            ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "web-ts"]
+        )
+        self.assertEqual(code, 0)
+        self.assertTrue((self.dest / "skills/frontend-design/SKILL.md").is_file())
+        self.assertTrue(
+            (self.dest / "skills/web-design-guidelines/SKILL.md").is_file()
+        )
+        self.assertTrue(
+            (self.dest / "skills/web-design-guidelines/command.md").is_file()
+        )
+        installed = load_yaml_file(self.dest / "my-cursor-setup-catalog.yaml")
+        for sid in (
+            "vercel-react-best-practices",
+            "frontend-design",
+            "web-design-guidelines",
+            "tdd",
+            "verification-before-completion",
+        ):
+            self.assertIn(sid, installed["personas"]["web-ts"]["skills"], sid)
+        self.assertIn(
+            "web-design-guidelines",
+            installed["personas"]["domain-reviewer"]["skills"],
+        )
+        self.assertNotIn(
+            "frontend-design",
+            installed["personas"]["domain-reviewer"]["skills"],
+        )
+        self.assertEqual(
+            installed["skills"]["frontend-design"]["personas"], ["web-ts"]
+        )
+        self.assertIn(
+            "web-ts", installed["skills"]["web-design-guidelines"]["personas"]
+        )
+        self.assertIn(
+            "domain-reviewer",
+            installed["skills"]["web-design-guidelines"]["personas"],
+        )
+        self.assertEqual(installed["skills"]["frontend-design"]["agents"], [])
+        self.assertEqual(
+            installed["skills"]["web-design-guidelines"]["agents"], []
+        )
+
     def test_infra_profile_installs_terraform_not_vercel(self):
         code = main(
             ["--dest", str(self.dest), "--repo", str(self.repo), "--profile", "infra"]
