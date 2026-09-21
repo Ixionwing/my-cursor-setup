@@ -21,6 +21,21 @@ vercel-react-best-practices
   License: MIT
   Files: third_party/vercel-labs-agent-skills/
 
+frontend-design
+  Upstream: https://github.com/anthropics/skills (skills/frontend-design)
+  Snapshot: 34040c9c568585f6929bedeaad110ad08f079624
+  License: Apache-2.0
+  Files: third_party/anthropics-skills/
+
+web-design-guidelines
+  Skill wrapper: https://github.com/vercel-labs/agent-skills (skills/web-design-guidelines)
+  Snapshot: 063bee94c3f4df8453406c830b0a7df0f2860278
+  Guidelines body: https://github.com/vercel-labs/web-interface-guidelines (command.md)
+  Snapshot: e3d624baaf29dc1fc645aff3e38f03e564d2d6b1
+  License: MIT
+  Copyright (c) 2025 Vercel Labs
+  Files: third_party/vercel-labs-agent-skills/web-design-guidelines/
+
 terraform-skill
   Upstream: https://github.com/antonbabenko/terraform-skill
   Snapshot: 0a3a4a66e99001347d36a41e10260a825be3ab62

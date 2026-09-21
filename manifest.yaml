@@ -35,6 +35,12 @@ files:
   vercel-react-best-practices:
     src: cursor/skills/vercel-react-best-practices
     dest: skills/vercel-react-best-practices
+  frontend-design:
+    src: cursor/skills/frontend-design
+    dest: skills/frontend-design
+  web-design-guidelines:
+    src: cursor/skills/web-design-guidelines
+    dest: skills/web-design-guidelines
   terraform-skill:
     src: cursor/skills/terraform-skill
     dest: skills/terraform-skill

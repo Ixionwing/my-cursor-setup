@@ -10,7 +10,7 @@ Read `~/.cursor/my-cursor-setup-catalog.yaml` when choosing skills or personas.
 Load only what the current task needs. Do not attach every skill, agent, or rule.
 
 In-session domain personas (do not spawn Task subagents for this):
-- React/Next UI → persona `web-ts` (skill `vercel-react-best-practices`)
+- React/Next UI → persona `web-ts` (skills `vercel-react-best-practices`, `frontend-design`, `web-design-guidelines`). Load the persona list; pick by task (perf vs restyle vs a11y review). Do not dump a routing tree.
 - Node/Express API → persona `backend-node` (skill `node-api-conventions`)
 - Python/FastAPI → persona `backend-python` (skill `python-api-conventions`)
 - Terraform/OpenTofu → persona `infra` (skill `terraform-skill`)

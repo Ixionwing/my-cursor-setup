@@ -5,7 +5,7 @@ profiles:
     rules: [route-context, commit-style, quality-style]
     hooks: [deny-destructive-shell, deny-destructive-db, deny-secrets-shell, ask-unexpected-network, deny-secret-reads, deny-destructive-containers, deny-destructive-github]
   web-ts:
-    skills: [vercel-react-best-practices, domain-reviewer]
+    skills: [vercel-react-best-practices, frontend-design, web-design-guidelines, domain-reviewer]
     agents: []
     rules: [web-ts-ui]
     hooks: []
@@ -42,7 +42,7 @@ profiles:
 
 personas:
   web-ts:
-    skills: [vercel-react-best-practices, tdd, verification-before-completion]
+    skills: [vercel-react-best-practices, frontend-design, web-design-guidelines, tdd, verification-before-completion]
   backend-node:
     skills: [node-api-conventions, tdd, verification-before-completion]
   backend-python:
@@ -60,7 +60,7 @@ personas:
   mcp:
     skills: [fastmcp, tdd, verification-before-completion]
   domain-reviewer:
-    skills: [domain-reviewer, vercel-react-best-practices, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions, llamaindex-ingest, pydantic-ai-rag, fastmcp, verification-before-completion]
+    skills: [domain-reviewer, vercel-react-best-practices, web-design-guidelines, node-api-conventions, python-api-conventions, terraform-skill, docker-conventions, kubernetes-skill, python-db-conventions, prisma-cli, prisma-client-api, prisma-database-setup, github-actions, llamaindex-ingest, pydantic-ai-rag, fastmcp, verification-before-completion]
 
 skills:
   verification-before-completion:
@@ -73,6 +73,14 @@ skills:
     personas: [web-ts, backend-node, backend-python, infra, db-python, db-prisma, ci, rag, mcp]
   vercel-react-best-practices:
     origin: third_party/vercel-labs-agent-skills/react-best-practices
+    agents: []
+    personas: [web-ts, domain-reviewer]
+  frontend-design:
+    origin: third_party/anthropics-skills/frontend-design
+    agents: []
+    personas: [web-ts]
+  web-design-guidelines:
+    origin: third_party/vercel-labs-agent-skills/web-design-guidelines
     agents: []
     personas: [web-ts, domain-reviewer]
   node-api-conventions:

@@ -6,4 +6,6 @@ alwaysApply: false
 
 # Web TypeScript UI files
 
-When these paths are in play, follow `vercel-react-best-practices`. Do not treat every `*.ts` file as UI.
+When these paths are in play, follow `vercel-react-best-practices` for performance; `frontend-design` when writing or reshaping visual UI; `web-design-guidelines` when reviewing UI. Do not treat every `*.ts` file as UI.
+
+If the app has no styling framework, bootstrap MUI + Pigment CSS and do not use Turbopack on that default (see `frontend-design`).
